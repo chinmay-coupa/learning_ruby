@@ -1,31 +1,76 @@
-def welcome(greet,specific="anon") 
-    puts "#{greet} #{specific}"
-end
-welcome("hello","kevin")
+class Person 
+    attr_accessor :first_name,:last_name
 
-def to_sentence(array,conjuction="and")
-    case array.length
-    when 0
-        ""
-    when 1
-        array.first.to_s
-    when 2
-        array.join("#{conjuction} ")
-    else
-        array[0..-2].join(', ')+ ", #{conjuction} #{array[-1]}"
+    def first_and_last_name
+        "#{first_name} #{last_name}"
+    end
+    
+    def initial_and_last_name
+        "#{get_initial(first_name)} #{last_name}"
+    end
+
+private
+    def get_initial(name)
+        name[0]+"."
+    end
+
+    def say_hello 
+        "Hellooo.."
     end
 end
 
-arr=["red","green","blue"]
 
-puts to_sentence(arr)
-puts to_sentence(arr,'or')
+# class Animal
+#     def set_noise
+#         @noise="oink"
+#     end
 
-def add_and_subtract(n1,n2)
-    ad=n1+n2
-    sb=n1-n2
-    [ad,sb]
+#     def make_noise
+#         @noise
+#     end
+# end
+
+# class Animal
+
+#     # setter
+#     def noise=(value)
+#         @noise=value
+#     end 
+
+#     # getter
+#     def noise   #methods
+#         @noise  #instance variable
+#     end
+
+# end 
+
+class Animal 
+    attr_accessor :noise,:color
+
+    def initialize(options={})
+        @noise=options[:noise]|| "Oink"
+        puts "animal initialised"
+    end
+end 
+
+class Radio 
+
+    attr_reader :volume 
+    def volume=(value)
+        return if value<0 || value>10
+        @volume=value
+    end 
+
+    def crank_it_up
+        self.volume=11
+    end 
+
+    def volume_status
+        puts "Volume : #{volume}"
+    end 
+
 end
-a,s=add_and_subtract(6,7)
-puts "addition is #{a}"
-puts "subtraction is #{s}"
+
+
+    
+        
